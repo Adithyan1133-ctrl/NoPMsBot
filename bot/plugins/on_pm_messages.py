@@ -46,7 +46,7 @@ from bot.sql.blacklist_sql import (
 )
 async def on_pm_s(client: Client, message: Message):
     user_id, reply_message_id = get_user_id(
-        message.reply_to_message.message_id
+        message.message_id
     )
     check_ban = check_is_black_list(message)
     if check_ban:
