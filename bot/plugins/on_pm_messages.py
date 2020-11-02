@@ -45,9 +45,8 @@ from bot.sql.blacklist_sql import (
     filters.incoming
 )
 async def on_pm_s(client: Client, message: Message):
-    user_id, reply_message_id = get_user_id(
-        message.message_id
-    )
+    chat_id = message.from_user.id
+    msg_id = message.message_id
     check_ban = check_is_black_list(message)
     if check_ban:
         await message.reply_text(
@@ -69,8 +68,8 @@ async def on_pm_s(client: Client, message: Message):
     )
     time.sleep(5)
     await client.send_message(
-        chat_id=user_id, 
+        chat_id=chat_id, 
         text="Thank you for your feedback👍, now stay Quite, Our Admins will Talk to you Soon⛑", 
         parse_mode='html', 
-        reply_to_message_id=reply_to_message_id
+        reply_to_message_id=msg_id
     )
